@@ -10,15 +10,17 @@ public class SwipeEditPlugin: CAPPlugin {
     private let implementation = SwipeEdit()
 
     @objc func enable(_ call: CAPPluginCall) {
+        self.bridge?.webView?.allowsBackForwardNavigationGestures = true;
         let value = call.getString("value") ?? ""
         call.resolve([
-            "value": implementation.echo(value)
+            "value": implementation.enable(value)
         ])
     }
     @objc func disable(_ call: CAPPluginCall) {
+        self.bridge?.webView?.allowsBackForwardNavigationGestures = false;
         let value = call.getString("value") ?? ""
         call.resolve([
-            "value": implementation.echo(value)
+            "value": implementation.disable(value)
         ])
     }
 }
