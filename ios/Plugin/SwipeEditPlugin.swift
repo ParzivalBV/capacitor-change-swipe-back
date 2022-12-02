@@ -9,7 +9,13 @@ import Capacitor
 public class SwipeEditPlugin: CAPPlugin {
     private let implementation = SwipeEdit()
 
-    @objc func echo(_ call: CAPPluginCall) {
+    @objc func enable(_ call: CAPPluginCall) {
+        let value = call.getString("value") ?? ""
+        call.resolve([
+            "value": implementation.echo(value)
+        ])
+    }
+    @objc func disable(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? ""
         call.resolve([
             "value": implementation.echo(value)
